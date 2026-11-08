@@ -1363,7 +1363,7 @@ int axp20x_match_device(struct axp20x_dev *axp20x)
 		axp20x->regmap_irq_chip = &axp15060_regmap_irq_chip;
 		break;
 	default:
-		dev_err(dev, "unsupported AXP20X ID %lu\n", axp20x->variant);
+		dev_err(dev, "unsupported AXP20X ID %u\n", axp20x->variant);
 		return -EINVAL;
 	}
 
@@ -1449,7 +1449,7 @@ int axp20x_device_probe(struct axp20x_dev *axp20x)
 	if (axp20x->variant != AXP288_ID)
 		devm_register_sys_off_handler(axp20x->dev,
 					      SYS_OFF_MODE_POWER_OFF,
-					      SYS_OFF_PRIO_DEFAULT,
+					      SYS_OFF_PRIO_HIGH,
 					      axp20x_power_off, axp20x);
 
 	dev_info(axp20x->dev, "AXP20X driver loaded\n");
